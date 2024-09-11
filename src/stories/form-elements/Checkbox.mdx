@@ -1,0 +1,43 @@
+import {Meta, Source} from '@storybook/blocks';
+
+<Meta title="CES Theme/Form elements/Checkbox/Code" />
+
+## Controlled Version - Long / Segmented
+<Source
+    code={
+        `const ControlledExample = () => {
+    const [checked, setChecked] = useState<boolean | 'indeterminate'>(true);
+    return (
+        <SegmentedCheckbox checked={checked} onCheckedChange={setChecked}>
+            <SegmentedCheckbox.CheckboxIndicator>
+                {checked === true && <SegmentedCheckbox.CheckboxIndicator.CheckIcon/>}
+                {checked === "indeterminate" && <SegmentedCheckbox.CheckboxIndicator.CheckIconMinus/>}
+            </SegmentedCheckbox.CheckboxIndicator>
+        </SegmentedCheckbox>
+    )
+};
+`
+    }
+/>
+
+## Convenience version - less control - checkbox standalone
+<Source
+    code={
+        `
+        const CheckboxConvenienceVariant = () => (
+    <Checkbox/>
+);
+`
+    }
+/>
+
+## Convenience version - less control - checkbox with a label attached
+<Source
+    code={
+        `
+const CheckboxConvenienceVariantWithLabel = () => (
+    <CheckboxField label={"Label"} labelAlign={"RIGHT"}/>
+);
+`
+    }
+/>

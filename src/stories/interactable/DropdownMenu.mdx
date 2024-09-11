@@ -1,0 +1,24 @@
+import {Meta, Controls, Canvas} from '@storybook/blocks';
+import * as DropdownMenuStories from './DropdownMenu.stories';
+
+<Meta title="CES Theme/Interactable/DropdownMenu/Code"/>
+
+# Dropdown menu
+
+A dropdown menu is an interactive user interface element that allows users to select from a list of options.
+It typically appears as a vertical list that expands when the user clicks or taps on a specific control.
+Dropdown menus are used to conserve space and enhance user experience by presenting a variety of options
+in a compact manner. They provide a quick and efficient way for users to make a selection or
+take an action without requiring much screen real estate.
+
+## Props
+
+### The short variant of dropdown menu for maximal convenience
+<Controls of={DropdownMenuStories.DropdownMenuShortHiddenStory}/>
+<Canvas of={DropdownMenuStories.DropdownMenuShortHiddenStory}/>
+
+
+### The long variant of dropdown menu for maximal control
+<Controls of={DropdownMenuStories.DropdownMenuLongHiddenStory}/>
+<Canvas of={DropdownMenuStories.DropdownMenuLongHiddenStory}/>
+

@@ -1,0 +1,34 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+
+import * as RadioGroupStories from './RadioGroup.stories';
+
+<Meta of={RadioGroupStories} />
+
+# RadioGroup
+
+A RadioGroup represents a group of radio buttons which can be selected for different options. The radio buttons are grouped together and only one option can be selected at a time.
+Selecting can be done by clicking on the radio button or by using the arrow keys of the keyboard. 
+
+[API Reference](https://www.radix-ui.com/primitives/docs/components/radio-group)
+
+## Props
+
+<Controls />
+
+## Item
+
+The RadioGroup.Item is a single radio button that can be selected. It is used in the RadioGroup component. The Item used the default icon for radio buttons.
+
+<Canvas of={RadioGroupStories.Item} />
+
+## SegementedItem
+
+The RadioGroup.SegementedItem is a single radio button that can be selected. It is used in the RadioGroup component. The segmented item can be controlled by the user for specific use cases.
+
+<Canvas of={RadioGroupStories.SegmentedItem} />
+
+## ItemField
+
+The RadioGroup.ItemField is a single radio button that contains a label. It is used in the RadioGroup component. ItemField is the most convenient option.
+
+<Canvas of={RadioGroupStories.ItemField} />

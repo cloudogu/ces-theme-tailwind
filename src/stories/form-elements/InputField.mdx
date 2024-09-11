@@ -1,0 +1,18 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+
+import * as InputFieldStories from './InputField.stories';
+
+<Meta of={InputFieldStories} />
+
+# InputField
+
+An InputField is an input that contains a label and an optional hint. It can have the variants neutral, success and danger. When variant danger is selected, an additional
+error hint can be shown. 
+
+Use this input field, when additional information are to be shown.
+
+## Props
+
+<Controls />
+
+<Canvas of={InputFieldStories.InputField} />

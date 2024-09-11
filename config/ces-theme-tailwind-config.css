@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .ces-focused {
+        -webkit-box-shadow: 0 0 0 2px var(--ces-color-default-focus-inner), 0 0 0 4px var(--ces-color-default-focus-outer);
+        box-shadow: 0 0 0 2px var(--ces-color-default-focus-inner), 0 0 0 4px var(--ces-color-default-focus-outer);
+        z-index: 1;
+    }
+
+    .ces-font-sans {
+        font-family: Calibri, Gill Sans, Gill Sans MT, Liberation Sans, Carlito, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+    }
+
+    .ces-font-serif {
+        font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, serif;
+    }
+
+    .ces-font-mono {
+        font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    }
+}
+
+@layer base {
+    html {
+        font-family: Calibri, Gill Sans, Gill Sans MT, Liberation Sans, Carlito, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+    }
+
+    h1 {
+        @apply desktop:text-desktop-6xl mobile:text-mobile-6xl text-brand mb-default-2x;
+    }
+
+    h2 {
+        @apply desktop:text-desktop-5xl mobile:text-mobile-5xl mb-default-2x;
+    } 
+
+    h3 {
+        @apply desktop:text-desktop-4xl mobile:text-mobile-4xl mb-default;
+    }
+    
+    h4 {
+        @apply font-bold desktop:text-desktop-3xl mobile:text-mobile-3xl mb-default;
+    }
+    
+    h5 {
+        @apply desktop:text-desktop-2xl mobile:text-mobile-2xl mb-default;
+    }
+
+    h6 {
+        @apply font-bold desktop:text-desktop-xl mobile:text-mobile-xl mb-default;
+    }
+
+    a {
+        @apply text-brand underline decoration-brand decoration-dashed decoration-1
+        hover:decoration-solid
+        active:decoration-2 active:decoration-solid
+        focus-visible:ces-focused focus-visible:outline-none focus-visible:text-default-text focus-visible:no-underline
+    }
+
+    a.ces-unstyled {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        @apply no-underline
+    }
+
+    hr {
+        @apply text-brand border-solid desktop:my-8 mobile:mx-0 mobile:my-6;
+    }
+
+    p {
+        @apply desktop:text-desktop-regular mobile:text-mobile-regular;
+    }
+
+    label {
+        @apply desktop:text-desktop-regular mobile:text-mobile-regular;
+    }
+
+    legend {
+        @apply text-brand desktop:text-desktop-xl mobile:text-mobile-xl
+    }
+}

@@ -1,0 +1,200 @@
+import {Meta, Source} from '@storybook/blocks';
+
+<Meta title="CES Theme/General/Navbar" />
+
+## The default variant. Highly recommended to use
+
+<Source
+    code={
+        `
+const NavbarShort = () => {
+    return (
+        // You can skip the <Router> if not using react-router-dom.
+        // It is not provided in the library and muss be added manually.
+        <Router>
+            <NavbarRoot>
+                <NavbarRoot.Navbar
+                    applicationLogo={<>My app logo</>}
+                    applicationTitle={"My Example App"}
+                    username={"UserName"}
+                    accountLink={"/account"}
+                    logoutLink={"/cas/logout"}
+                    helpLink={"/help"}
+                    links={[
+                        {
+                            text: "Home",
+                            url: "/home",
+                            type: "react-router-dom",
+                            active: true,
+                        },
+                        {
+                            text: "Page 1",
+                            url: "/page1",
+                            type: "react-router-dom",
+                        },
+                        {
+                            text: "Some external link",
+                            url: "https://www.external-link.de",
+                            type: "a",
+                        }
+                    ]}
+                    // Set one of the following to overwrite default translation
+                    // accountLinkText={""}
+                    // logoutLinkText={""}
+                    // helpLinkText={""}
+                />
+            </NavbarRoot>
+        </Router>
+    );
+};
+`
+    }
+/>
+
+## The longer variant with a little more control
+
+<Source
+    code={
+        `
+const NavbarMoreDetailed = () => {
+    const NavbarComponent = () => {
+        const links = [
+            {
+                text: "Home",
+                url: "/home",
+                type: "react-router-dom",
+                active: true,
+            },
+            {
+                text: "Page 1",
+                url: "/page1",
+                type: "react-router-dom",
+            },
+            {
+                text: "Some external link",
+                url: "https://www.external-link.de",
+                type: "a",
+            }
+        ] as NavbarLinkType[];
+
+        const {ref, itemsToRenderInMenu, itemsToRenderInBar} = useDesktopNavbarSplitLinks<HTMLDivElement>(links);
+
+        return (
+            <Router>
+                <NavbarRoot.SegmentedNavbar>
+                    <ApplicationTitle icon={<div>My app logo</div>}>
+                        My Example App
+                    </ApplicationTitle>
+                    <NavbarRoot.SegmentedNavbar.DesktopNavItemBar ref={ref}>
+                        {
+                            itemsToRenderInBar.map(linkItem =>
+                                <NavbarRoot.SegmentedNavbar.DesktopNavItemBar.Link
+                                    key={\`\${linkItem?.text}-\${linkItem?.url}\`}
+                                    icon={linkItem.icon?.call(undefined)}
+                                    href={linkItem.type === "a" ? linkItem?.url : undefined}
+                                    to={linkItem.type !== "a" ? linkItem?.url : undefined}
+                                    active={linkItem.active}
+                                >
+                                    {linkItem?.text}
+                                </NavbarRoot.SegmentedNavbar.DesktopNavItemBar.Link>
+                            )
+                        }
+                        {
+                            itemsToRenderInMenu?.length > 0 &&
+                            <NavbarRoot.SegmentedNavbar.DesktopNavItemBar.MenuMore>
+                                {
+                                    itemsToRenderInMenu.map(linkItem =>
+                                        <NavbarRoot.SegmentedNavbar.DesktopNavItemBar.MenuMore.Link
+                                            key={\`\${linkItem?.text}-\${linkItem?.url}\`}
+                                            href={linkItem?.type === "a" ? linkItem?.url : undefined}
+                                            to={linkItem?.type !== "a" ? linkItem?.url : undefined}
+                                            active={linkItem?.active}
+                                        >
+                                            {linkItem?.text}
+                                        </NavbarRoot.SegmentedNavbar.DesktopNavItemBar.MenuMore.Link>
+                                    )
+                                }
+                            </NavbarRoot.SegmentedNavbar.DesktopNavItemBar.MenuMore>
+                        }
+                    </NavbarRoot.SegmentedNavbar.DesktopNavItemBar>
+
+                    <NavbarRoot.SegmentedNavbar.DesktopRightItemBar>
+                        <NavbarRoot.SegmentedNavbar.DesktopRightItemBar.LinkHelp
+                            // Use for external links instead of 'to'
+                            // href={"https://www.external-link.de"}
+                            to={"/help"}>
+                            Help me
+                        </NavbarRoot.SegmentedNavbar.DesktopRightItemBar.LinkHelp>
+                        <NavbarRoot.SegmentedNavbar.DesktopRightItemBar.MenuUser
+                            triggerButtonText={"UserName"}
+                        >
+                            <NavbarRoot.SegmentedNavbar.DesktopRightItemBar.Menu.Link
+                                // Use for external links instead of 'to'
+                                // href={"https://www.external-link.de"}
+                                to={"/account"}
+                            >
+                                Account
+                            </NavbarRoot.SegmentedNavbar.DesktopRightItemBar.Menu.Link>
+                            <NavbarRoot.SegmentedNavbar.DesktopRightItemBar.Menu.Link
+                                // Use for external links instead of 'to'
+                                // href={"https://www.external-link.de"}
+                                to={"/logout"}
+                            >
+                                Logout
+                            </NavbarRoot.SegmentedNavbar.DesktopRightItemBar.Menu.Link>
+                        </NavbarRoot.SegmentedNavbar.DesktopRightItemBar.MenuUser>
+                    </NavbarRoot.SegmentedNavbar.DesktopRightItemBar>
+
+                    <NavbarRoot.SegmentedNavbar.MobileMenuItemBar>
+                        <NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu>
+                            <NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group>
+                                {
+                                    links.map(l =>
+                                        <NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link
+                                            key={\`\${l.text}-\${l.url}\`}
+                                            href={l.url}
+                                        >
+                                            {l.text}
+                                        </NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link>
+                                    )
+                                }
+                            </NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group>
+                            <NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group>
+                                <NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link
+                                    // Use for external links instead of 'to'
+                                    // href={"https://www.external-link.de"}
+                                    to={"/help"}
+                                >
+                                    Help me
+                                </NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link>
+                                <NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link
+                                    // Use for external links instead of 'to'
+                                    // href={"https://www.external-link.de"}
+                                    to={"/account"}
+                                >
+                                    Account
+                                </NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link>
+                                <NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link
+                                    // Use for external links instead of 'to'
+                                    // href={"https://www.external-link.de"}
+                                    to={"/logout"}
+                                >
+                                    Logout
+                                </NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group.Link>
+                            </NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu.Group>
+                        </NavbarRoot.SegmentedNavbar.MobileMenuItemBar.Menu>
+                    </NavbarRoot.SegmentedNavbar.MobileMenuItemBar>
+                </NavbarRoot.SegmentedNavbar>
+            </Router>
+        );
+    };
+
+    return (
+        <NavbarRoot hardBreakpointMobile={767} enableAutoCollapse={true}>
+            <NavbarComponent/>
+        </NavbarRoot>
+    );
+};
+`
+    }
+/>

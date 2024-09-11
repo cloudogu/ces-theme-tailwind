@@ -1,0 +1,30 @@
+{
+  "ces-theme-tailwind-lib-translation": {
+    "table": {
+      "pagination": {
+        "rows": "Zeilen",
+        "row": "Zeile",
+        "all": "Alle",
+        "of": "von",
+        "aria-back": "zurück",
+        "aria-forward": "weiter"
+      }
+    },
+    "navbar":{
+      "help": "Hilfe",
+      "more": "Mehr",
+      "account": "<en>Account</en>",
+      "logout": "Ausloggen"
+    },
+    "toast": {
+      "counter": {
+        "singular": "weitere Nachricht",
+        "plural": "weitere Nachrichten"
+      }
+    },
+    "dialog": {
+      "ok": "OK",
+      "cancel": "Abbrechen"
+    }
+  }
+}

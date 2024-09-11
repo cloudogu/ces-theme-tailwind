@@ -1,0 +1,23 @@
+import {Meta, Controls, Canvas} from "@storybook/blocks";
+import * as ConfirmDialogStories from './ConfirmDialog.stories';
+import * as DialogStories from './Dialog.stories';
+
+<Meta title="CES Theme/Interactable/Dialog/Dialog"/>
+
+# Dialog
+
+A dialog presents users with important information or prompts within the application.
+It is a modal window that temporarily interrupts the user's workflow, typically appearing at
+the center of the screen. Dialogs are interactive, allowing users to respond or take action
+based on the presented message or options.
+
+## Props
+
+### The confirmation dialog with an ok and a cancel button
+<Controls of={ConfirmDialogStories.ConfirmationDialogHiddenStory}/>
+<Canvas of={ConfirmDialogStories.ConfirmationDialogHiddenStory}/>
+
+### The segmented dialog - customizable
+
+<Controls of={DialogStories.SegmentedDialogHiddenStory}/>
+<Canvas of={DialogStories.SegmentedDialogHiddenStory}/>

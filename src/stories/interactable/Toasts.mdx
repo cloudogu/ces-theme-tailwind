@@ -1,0 +1,81 @@
+import { Meta, Source } from "@storybook/blocks";
+
+<Meta title="CES Theme/Interactable/Toast/Code" />
+
+## Create Toast using custom hook and ToastProvider
+
+<Source
+    code={`
+const ExampleComponent: React.FC = () => {
+    const { toast } = useToast();
+
+    return (
+        <div>
+            <Button
+                variant="primary"
+                onClick={() => {
+                    toast({
+                        type: "foreground",
+                        variant: "success",
+                        description: "This is the default toast",
+                        actionBtn: <ActionButton altText="Try again">Try again</ActionButton>,
+                    });
+                }}
+            >
+                ShowToast
+            </Button>
+            <ToastProvider maxVisibleToasts={5} />
+        </div>
+    );
+};
+`}
+/>
+
+## Create Segmented Toast
+
+<Source
+    code={`
+const [open, setOpen] = React.useState(false);
+        const eventDateRef = React.useRef(new Date());
+        const timerRef = React.useRef(0);
+
+        React.useEffect(() => {
+            return () => clearTimeout(timerRef.current);
+        }, []);
+
+        return (
+            <ToastSegmentedProvider swipeDirection="left">
+                <button
+                    onClick={() => {
+                        setOpen(false);
+                        window.clearTimeout(timerRef.current);
+                        timerRef.current = window.setTimeout(() => {
+                            eventDateRef.current = new Date();
+                            setOpen(true);
+                        }, 100);
+                    }}
+                >
+                    Add to calendar
+                </button>
+
+                <ToastSegmentedProvider.Toast
+                    open={open}
+                    onOpenChange={setOpen}
+                >
+                    <ToastSegmentedProvider.Toast.Title>Scheduled: Catch up</ToastSegmentedProvider.Toast.Title>
+                    <ToastSegmentedProvider.Toast.Description asChild>
+                        <time dateTime={eventDateRef.current.toISOString()}>
+                            {new Intl.DateTimeFormat("en-EN", { dateStyle: "full" }).format(eventDateRef.current)}
+                        </time>
+                    </ToastSegmentedProvider.Toast.Description>
+                    <ToastSegmentedProvider.Toast.Action asChild altText="Goto schedule to undo">
+                        <button>
+                            Undo
+                        </button>
+                    </ToastSegmentedProvider.Toast.Action>
+                </ToastSegmentedProvider.Toast>
+                <ToastSegmentedProvider.Viewport/>
+            </ToastSegmentedProvider>
+        );
+`}
+/>

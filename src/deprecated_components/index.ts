@@ -1,0 +1,33 @@
+export {default as deprecated_useFormHandler} from '@src/deprecated_hooks/useFormHandler';
+export type {UseFormHandlerFunctions as deprecated_UseFormHandlerFunctions} from '@src/deprecated_hooks/useFormHandler';
+export type {FormHandlerConfig as deprecated_FormHandlerConfig} from '@src/deprecated_hooks/useFormHandler';
+export type {StateHandler as deprecated_StateHandler} from '@src/deprecated_components/inputs/StateHandler';
+export type {SubmitHandler as deprecated_SubmitHandler} from '@src/deprecated_components/forms/Form';
+export {Form as deprecated_Form} from '@src/deprecated_components/forms';
+export {default as deprecated_Alert} from '@src/deprecated_components/alerts/Alert';
+export {default as deprecated_InputErrors} from '@src/deprecated_components/inputs/InputErrors';
+export {default as deprecated_TextArea} from '@src/deprecated_components/inputs/TextArea';
+export {default as deprecated_FileInput} from '@src/deprecated_components/inputs/FileInput';
+export {default as deprecated_H1} from '@src/deprecated_components/text/H1';
+export {default as deprecated_H2} from '@src/deprecated_components/text/H2';
+export {default as deprecated_H3} from '@src/deprecated_components/text/H3';
+export {default as deprecated_H4} from '@src/deprecated_components/text/H4';
+export {default as deprecated_H5} from '@src/deprecated_components/text/H5';
+export {default as deprecated_H6} from '@src/deprecated_components/text/H6';
+export {default as deprecated_Main} from '@src/deprecated_components/Main';
+export {default as deprecated_LoadingIcon} from '@src/deprecated_components/icons/LoadingIcon';
+export {default as deprecated_Href} from '@src/deprecated_components/Href';
+export {default as deprecated_RouterLink} from '@src/deprecated_components/RouterLink';
+export {default as deprecated_MailHref} from '@src/deprecated_components/MailHref';
+export {default as deprecated_Searchbar} from '@src/deprecated_components/searchbar/default/Searchbar';
+export {default as deprecated_SearchbarAutocomplete} from '@src/deprecated_components/searchbar/autocomplete/SearchbarAutocomplete';
+export {default as deprecated_ListWithSearchbar} from '@src/deprecated_components/listWithSearchbar/ListWithSearchbar';
+export {default as deprecated_Paragraph} from '@src/deprecated_components/Paragraph';
+export {useAlertNotification as deprecated_useAlertNotification} from '@src/deprecated_hooks/useAlertNotification';
+export {
+    usePagination as deprecated_usePagination, defaultPaginationData as deprecated_defaultPaginationData, createPaginationData as deprecated_createPaginationData, DEFAULT_PAGE_SIZE as deprecated_DEFAULT_PAGE_SIZE, calcPageCount as deprecated_calcPageCount, calcPageStart as deprecated_calcPageStart
+} from '@src/deprecated_hooks/usePagination';
+export type {PagedModel as deprecated_PagedModel, PaginationData as deprecated_PaginationData} from '@src/deprecated_hooks/usePagination';
+export type {NotifyFunction as deprecated_NotifyFunction} from '@src/deprecated_hooks/useAlertNotification';
+export type {AlertVariant as deprecated_AlertVariant} from '@src/deprecated_components/alerts/Alert';
+export {FormContext as deprecated_FormContext} from '@src/deprecated_components/forms/Form';

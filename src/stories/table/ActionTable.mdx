@@ -1,0 +1,278 @@
+import {Meta, Source} from '@storybook/blocks';
+
+<Meta title="CES Theme/Table/ActionTable/Code"/>
+
+## The most simple variant - table is paginated in frontend
+
+<Source code={`
+export const FrontendPaginatedTable = () => (
+    <ActionTableFrontendPaginated<{ a: string; b: number }>
+        paginationControl={{
+            defaultLinesPerPage: 15,
+            lineCountOptions: [
+                15,
+                30,
+                60,
+                {value: -1, text: "Alle"},
+            ],
+            allLineCount: 70,
+        }}
+        isLoading={false}
+        values={
+            [...[...Array(70)]]
+                .map((_, i) => ({a: \`Value \${i + 1}\`, b: i + 1}))
+        }
+    >
+        {
+            (elements) => <>
+                <ActionTableFrontendPaginated.HeadWithOneRow>
+                    <ActionTableFrontendPaginated.HeadWithOneRow.Column>Random
+                        value</ActionTableFrontendPaginated.HeadWithOneRow.Column>
+                    <ActionTableFrontendPaginated.HeadWithOneRow.Column
+                        variant={"numeric"}>Magic Number
+                    </ActionTableFrontendPaginated.HeadWithOneRow.Column>
+                </ActionTableFrontendPaginated.HeadWithOneRow>
+
+                    <ActionTableFrontendPaginated.Body>
+                        {elements.map((e, i) => (
+                            <ActionTableFrontendPaginated.Body.Row key={i}>
+                                <ActionTableFrontendPaginated.Body.Row.Column>{e.a}</ActionTableFrontendPaginated.Body.Row.Column>
+                                <ActionTableFrontendPaginated.Body.Row.Column
+                                    variant={"numeric"}
+                                    decimalPlaces={3}>
+                                    {e.b}
+                                </ActionTableFrontendPaginated.Body.Row.Column>
+                            </ActionTableFrontendPaginated.Body.Row>
+                        ))}
+                    </ActionTableFrontendPaginated.Body>
+                </>
+            }
+        </ActionTableFrontendPaginated>
+);
+`} />
+
+## The usual variant - table is paginated in backend
+
+<Source code={`
+export const BackendPaginatedTable = () => {
+    const SomeBackendService = {
+        get: async (start: number, end: number) => {
+            const entries = 120;
+
+            return new Promise<{ values: { a: string, b: number }[], allEntries: number }>(resolve => {
+                setTimeout(() => {
+                        resolve(
+                            {
+                                values: [...[...Array(entries)]]
+                                    .map((_, i) => i)
+                                    .filter(i => (i >= start && i <= end))
+                                    .map((i) => ({a: \`Backend Value \${start}-\${end}\`, b: i})),
+                                allEntries: entries,
+                            }
+                        );
+                    },
+                    500
+                );
+            });
+        },
+    };
+
+        const [isLoading, setIsLoading] = useState(true);
+        const [myEntries, setMyEntries] = useState<{
+            values: { a: string, b: number }[],
+            allEntries: number
+        }>({allEntries: 0, values: []});
+
+        const paginationControl = useActionTableControl({
+            paginationConfig: {
+                defaultStartPage: 1,
+                defaultLinesPerPage: 15,
+                lineCountOptions: [
+                    15,
+                    30,
+                    60,
+                    {value: -1, text: "Alle"},
+                ],
+                allLineCount: myEntries.allEntries,
+                loadDataFunction: async ({currentStart, currentEnd}) => {
+                    try {
+                        setIsLoading(true);
+                        const result = await SomeBackendService.get(currentStart, currentEnd);
+                        setMyEntries(result);
+                    } finally {
+                        setIsLoading(false);
+                    }
+                },
+            },
+            isLoading: isLoading,
+        })
+
+        return (
+            <ActionTable {...paginationControl}>
+                <ActionTable.HeadWithOneRow>
+                    <ActionTable.HeadWithOneRow.Column>Random
+                        value</ActionTable.HeadWithOneRow.Column>
+                    <ActionTable.HeadWithOneRow.Column
+                        variant={"numeric"}>Magic Number
+                    </ActionTable.HeadWithOneRow.Column>
+                </ActionTable.HeadWithOneRow>
+
+                {!isLoading &&
+                    <ActionTable.Body>
+                        {
+                            myEntries.values.map(
+                                (e, i) => (
+                                    <ActionTable.Body.Row key={i}>
+                                        <ActionTable.Body.Row.Column>
+                                            {e.a}
+                                        </ActionTable.Body.Row.Column>
+                                        <ActionTable.Body.Row.Column
+                                            variant={"numeric"}
+                                            floatingPointSymbol={","}
+                                            decimalPlaces={1}>
+                                            {e.b}
+                                        </ActionTable.Body.Row.Column>
+                                    </ActionTable.Body.Row>
+                                )
+                            )
+                        }
+                    </ActionTable.Body>
+                }
+
+                {isLoading &&
+                    <ActionTable.SkeletonBody columns={2} rows={15}/>
+                }
+            </ActionTable>
+    );
+};
+`} />
+
+
+# The long version - most control
+
+<Source code={`
+export const BackendPaginatedTableLongVersion = () => {
+    const SomeBackendService = {
+        get: async (start: number, end: number) => {
+            const entries = 240;
+
+            return new Promise<{ values: { a: string, b: number }[], allEntries: number }>(resolve => {
+                setTimeout(() => {
+                        resolve(
+                            {
+                                values: [...[...Array(entries)]]
+                                    .map((_, i) => i)
+                                    .filter(i => (i >= start && i <= end))
+                                    .map((i) => ({a: \`Backend Value \${start}-\${end}\`, b: i})),
+                                allEntries: entries,
+                            }
+                        );
+                    },
+                    500
+                );
+            });
+        },
+    };
+
+        const [isLoading, setIsLoading] = useState(true);
+        const [myEntries, setMyEntries] = useState<{
+            values: { a: string, b: number }[],
+            allEntries: number
+        }>({allEntries: 0, values: []});
+        const paginationControl = usePaginationControl({
+            defaultStartPage: 1,
+            defaultLinesPerPage: 15,
+            lineCountOptions: [
+                15,
+                30,
+                60,
+                {value: -1, text: "Alle"},
+            ],
+            allLineCount: myEntries.allEntries,
+            loadDataFunction: async ({currentStart, currentEnd}) => {
+                try {
+                    setIsLoading(true);
+                    const result = await SomeBackendService.get(currentStart, currentEnd);
+                    setMyEntries(result);
+                } finally {
+                    setIsLoading(false);
+                }
+            },
+        });
+
+        return (
+            <SegmentedActionTable>
+                <SegmentedActionTable.Table>
+                    <SegmentedActionTable.Table.Head>
+                        <SegmentedActionTable.Table.Head.Row>
+                            <SegmentedActionTable.Table.Head.Row.Column>Random
+                                value</SegmentedActionTable.Table.Head.Row.Column>
+                            <SegmentedActionTable.Table.Head.Row.Column align={"right"}>Magic Number
+                            </SegmentedActionTable.Table.Head.Row.Column>
+                        </SegmentedActionTable.Table.Head.Row>
+                    </SegmentedActionTable.Table.Head>
+                    {!isLoading &&
+                        <SegmentedActionTable.Table.Body>
+                            {
+                                myEntries.values.map(
+                                    (e, i) => (
+                                        <SegmentedActionTable.Table.Body.Row key={i}>
+                                            <SegmentedActionTable.Table.Body.Row.Column>
+                                                {e.a}
+                                            </SegmentedActionTable.Table.Body.Row.Column>
+                                            <SegmentedActionTable.Table.Body.Row.Column
+                                                variant={"numeric"}
+                                                floatingPointSymbol={","}
+                                                decimalPlaces={1}>
+                                                {e.b}
+                                            </SegmentedActionTable.Table.Body.Row.Column>
+                                        </SegmentedActionTable.Table.Body.Row>
+                                    )
+                                )
+                            }
+                        </SegmentedActionTable.Table.Body>
+                    }
+
+                    {isLoading &&
+                        <ActionTable.SkeletonBody columns={2} rows={15}/>
+                    }
+                </SegmentedActionTable.Table>
+                <SegmentedActionTable.SegmentedPagination
+                    config={paginationControl}>
+                    <SegmentedActionTable.SegmentedPagination.SelectionArea>
+                        <SegmentedActionTable.SegmentedPagination.SelectionArea.Text>Rows</SegmentedActionTable.SegmentedPagination.SelectionArea.Text>
+                        <SegmentedActionTable.SegmentedPagination.SelectionArea.Select>
+                            <SegmentedActionTable.SegmentedPagination.SelectionArea.Select.Item value={15}/>
+                            <SegmentedActionTable.SegmentedPagination.SelectionArea.Select.Item value={30}/>
+                            <SegmentedActionTable.SegmentedPagination.SelectionArea.Select.Item value={60}/>
+                            <SegmentedActionTable.SegmentedPagination.SelectionArea.Select.Item value={-1}>
+                                Alle
+                            </SegmentedActionTable.SegmentedPagination.SelectionArea.Select.Item>
+                        </SegmentedActionTable.SegmentedPagination.SelectionArea.Select>
+                    </SegmentedActionTable.SegmentedPagination.SelectionArea>
+                    <SegmentedActionTable.SegmentedPagination.RowsDescriptionArea>
+                        {isLoading &&
+                            <SegmentedActionTable.SegmentedPagination.RowsDescriptionArea.Skeleton className={"w-40"}/>}
+                        {!isLoading && <>
+                            Row {paginationControl.currentStart}-{paginationControl.currentEnd} of {paginationControl.allLineCount},
+                            Page {paginationControl.page}
+                        </>}
+                    </SegmentedActionTable.SegmentedPagination.RowsDescriptionArea>
+                    <SegmentedActionTable.SegmentedPagination.NavigationArea>
+                        <SegmentedActionTable.SegmentedPagination.NavigationArea.Back
+                            disabled={paginationControl.page <= 1 || isLoading}
+                            onClick={() => paginationControl.setPage(paginationControl.page - 1)}
+                        >
+                            Back
+                        </SegmentedActionTable.SegmentedPagination.NavigationArea.Back>
+                        <SegmentedActionTable.SegmentedPagination.NavigationArea.Forward
+                            disabled={paginationControl.page >= paginationControl.maxPage || isLoading}
+                            onClick={() => paginationControl.setPage(paginationControl.page + 1)}
+                        >Forward</SegmentedActionTable.SegmentedPagination.NavigationArea.Forward>
+                    </SegmentedActionTable.SegmentedPagination.NavigationArea>
+                </SegmentedActionTable.SegmentedPagination>
+            </SegmentedActionTable>
+        );
+};
+`} />
+

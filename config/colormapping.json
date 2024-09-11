@@ -1,0 +1,44 @@
+{
+  "success": {
+    "stronger": "1000",
+    "strong": "900",
+    "DEFAULT": "800",
+    "weak": "400",
+    "weaker": "100"
+  },
+  "danger": {
+    "stronger": "900",
+    "strong": "800",
+    "DEFAULT": "600",
+    "weak": "300",
+    "weaker": "100"
+  },
+  "warning": {
+    "stronger": "1000",
+    "strong": "900",
+    "DEFAULT": "800",
+    "weak": "600",
+    "weaker": "200"
+  },
+  "brand": {
+    "stronger": "900",
+    "strong": "800",
+    "DEFAULT": "700",
+    "weak": "200",
+    "weaker": "100"
+  },
+  "neutral": {
+    "stronger": "800",
+    "strong": "700",
+    "DEFAULT": "600",
+    "weak": "300",
+    "weaker": "100"
+  },
+  "other": {
+    "default-background": "neutral-0",
+    "default-focus-inner": "neutral-0",
+    "default-focus-outer": "focus",
+    "default-text": "base-text",
+    "inverted-text": "inverted-text"
+  }
+}

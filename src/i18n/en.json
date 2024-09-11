@@ -1,0 +1,30 @@
+{
+  "ces-theme-tailwind-lib-translation": {
+    "table": {
+      "pagination": {
+        "rows": "Rows",
+        "row": "Row",
+        "all": "All",
+        "of": "of",
+        "aria-back": "back",
+        "aria-forward": "forward"
+      }
+    },
+    "navbar":{
+      "help": "Help",
+      "more": "More",
+      "account": "Account",
+      "logout": "Logout"
+    },
+    "toast": {
+      "counter": {
+        "singular": "more message",
+        "plural": "more messages"
+      }
+    },
+    "dialog": {
+      "ok": "OK",
+      "cancel": "Cancel"
+    }
+  }
+}

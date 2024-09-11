@@ -1,0 +1,37 @@
+import Navbar from "@components/navbar/Navbar";
+import SegmentedNavbar from "@components/navbar/SegmentedNavbar";
+import NavbarRoot from "./NavbarRoot";
+import type { NavbarRootProps } from "./NavbarRoot";
+import type {FC} from "react";
+type NavbarComponentType = FC<NavbarRootProps> & {
+    Navbar: typeof Navbar;
+    SegmentedNavbar: typeof SegmentedNavbar;
+};
+const newNavbarRoot = NavbarRoot as NavbarComponentType;
+newNavbarRoot.Navbar = Navbar;
+newNavbarRoot.SegmentedNavbar = SegmentedNavbar;
+export {newNavbarRoot as NavbarRoot};
+
+export {default as useDesktopNavbarSplitLinks} from "./hooks/useDesktopNavbarSplitLinks";
+export {default as useActualLocation} from "./hooks/useActualLocation";
+export type {NavbarApplicationTitleProps} from "./ApplicationTitle";
+export type {NavbarCloudoguLogoProps} from "./CloudoguLogo";
+export type {NavbarDesktopNavItemBarProps} from "./DesktopNavItemBar";
+export type {NavbarDesktopNavItemBarLinkProps} from "./DesktopNavItemBarLink";
+export type {NavbarDesktopNavItemBarRightProps} from "./DesktopNavItemBarRight";
+export type {NavbarDropdownMenuProps} from "./DropdownMenu";
+export type {NavbarDropdownMenuGroupProps} from "./DropdownMenuGroup";
+export type {NavbarDropdownMenuLinkProps} from "./DropdownMenuLink";
+export type {NavbarDropdownMenuTriggerButtonProps} from "./DropdownMenuTriggerButton";
+export type {NavbarHamburgerMenuIconProps} from "./HamburgerMenuIcon";
+export type {NavbarLinkProps} from "./Link";
+export type {NavbarMobileMenuItemBarProps} from "./MobileMenuItemBar";
+export type {NavbarProps} from "./Navbar";
+export type {NavbarBodyProps} from "./NavbarBody";
+export type {NavbarLinkType} from "./models/NavbarLinkType";
+export type {NavbarRootProps} from "./NavbarRoot";
+export type {NavbarPreconfiguredBarLinkHelpProps} from "./PreconfiguredBarLinkHelp";
+export type {NavbarPreconfiguredDropdownMenuMobileProps} from "./PreconfiguredDropdownMenuMobile";
+export type {NavbarPreconfiguredDropdownMenuMoreProps} from "./PreconfiguredDropdownMenuMore";
+export type {NavbarPreconfiguredDropdownMenuUserProps} from "./PreconfiguredDropdownMenuUser";
+export type {SegmentedNavbarProps} from "./SegmentedNavbar";

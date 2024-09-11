@@ -1,0 +1,20 @@
+import {Canvas, Meta, Controls} from '@storybook/blocks';
+
+import * as NotificationStories from './Notification.stories';
+
+<Meta of={NotificationStories}/>
+
+# Notification
+
+A notification informs users about the current status of an application through a message. They are non-interactive and usually appear near the top of the screen.
+Different variants are available to emphasize the nature of the message.
+
+## Props
+
+### Short variant - most convenience
+<Controls of={NotificationStories.ShortVariantHiddenStory}/>
+<Canvas of={NotificationStories.ShortVariantHiddenStory}/>
+
+### Long variant - less convenience
+<Controls of={NotificationStories.LongVariantHiddenStory} include={["variant"]}/>
+<Canvas of={NotificationStories.LongVariantHiddenStory}/>

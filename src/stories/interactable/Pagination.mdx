@@ -1,0 +1,41 @@
+import {Meta, Source} from '@storybook/blocks';
+
+<Meta title="CES Theme/Interactable/Pagination/Code" />
+
+## The most simple variant - uncontrolled
+
+<Source
+    code={
+        `
+export const Uncontrolled = () =>
+    <Pagination config={{
+        defaultLinesPerPage: 15,
+        allLineCount: 100,
+        lineCountOptions: [15, 30, 60, {value: -1, text: "Alle"}],
+    }}/>
+`
+    }
+/>
+
+## The simple variant - controlled
+<Source
+    code={`
+export const Controlled = () => {
+    const control = usePaginationControl({
+        defaultLinesPerPage: 15,
+        allLineCount: 100,
+        lineCountOptions: [15, 30, 60, {value: -1, text: "Alle"}],
+    });
+
+    return (
+        <>
+            Page: {control.page}<br/>
+            Max-Page: {control.maxPage}<br/>
+            Lines per Page: {control.linesPerPage}<br/>
+            <Pagination config={control}/>
+        </>
+    );
+}
+`
+    }
+/>
