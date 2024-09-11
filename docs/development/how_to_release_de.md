@@ -20,6 +20,6 @@ Sollte bei der Veröffentlichung des Pakets in die npm-Registry ein Problem auft
 folgenden Schritten aktualisiert werden.
 
 1. `git checkout <tag>`
-1. Sicherstellen, dass die `.npmrc` für die Produktive Registry generiert wurde. Ggf.: `make gen-npmrc-release`
+1. Sicherstellen, dass die `.npmrc` für die Produktive Registry generiert wurde.
 1. Paket releasen: `yarn publish --non-interactive`
     1. Das extra Flag `--non-interactive` sorgt dafür, dass die Version aus der `package.json` verwendet wird

@@ -1,6 +1,7 @@
 {
   "name": "@cloudogu/ces-theme-tailwind",
-  "license": "MIT",
+  "repository": "https://github.com/cloudogu/ces-theme-tailwind",
+  "license": "AGPL-3.0-only",
   "private": false,
   "version": "0.7.1",
   "files": [
