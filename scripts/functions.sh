@@ -1,12 +1,20 @@
 #!/bin/bash
 
 function release_warning() {
+
   TYPE="$(
-    cat .npmrc | grep "npm-releases" >/dev/null
+    cat package.json | grep '"version":' | grep 'alpha' > /dev/null
     echo $?
   )"
   if [[ "$TYPE" == "0" ]]; then
-    echo "Note: You are publishing a production release. You cannot skip any step."
+    echo "Note: You are publishing a pre-release. Checks will be skipped."
+    SKIP_LINT="true"
+    SKIP_BUILD="false"
+    SKIP_TESTS="true"
+    SKIP_IMPORT_CHECKS="true"
+    SKIP_CIRCULAR="true"
+  else
+    echo "Note: You are publishing a production-release. You cannot skip any step."
     SKIP_LINT="false"
     SKIP_BUILD="false"
     SKIP_TESTS="false"

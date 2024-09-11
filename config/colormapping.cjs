@@ -29,6 +29,21 @@ function defineColorVariableNames(color) {
     };
 }
 
+function defineVariables(groupName) {
+    const fullColor = extractFullColor(groupName);
+    return {
+        [`--ces-color-${groupName}-stronger`]: fullColor.stronger,
+        [`--ces-color-${groupName}-strong`]: fullColor.strong,
+        [`--ces-color-${groupName}`]: fullColor.DEFAULT,
+        [`--ces-color-${groupName}-weak`]: fullColor.weak,
+        [`--ces-color-${groupName}-weaker`]: fullColor.weaker,
+    };
+}
+
+function defineVariable(name) {
+    return {[`--ces-color-${name}`]: `${extractColorByName(mapping.other[name])}`}
+}
+
 module.exports = {
     colors: {
         brand: extractFullColor("brand"),
@@ -54,4 +69,16 @@ module.exports = {
         "default-text": defineColorVariableName("default-text"),
         "inverted-text": defineColorVariableName("inverted-text"),
     },
+    variables: {
+        ...defineVariables("brand"),
+        ...defineVariables("success"),
+        ...defineVariables("danger"),
+        ...defineVariables("warning"),
+        ...defineVariables("neutral"),
+        ...defineVariable("default-background"),
+        ...defineVariable("default-focus-inner"),
+        ...defineVariable("default-focus-outer"),
+        ...defineVariable("default-text"),
+        ...defineVariable("inverted-text"),
+    }
 };
