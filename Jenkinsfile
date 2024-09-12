@@ -77,7 +77,7 @@ node('docker') {
 
             stage('Publish') {
                 try {
-                    createNpmrcFile("jenkins")
+                    createNpmrcFile("cesmarvin-npmjs-token")
                     sh 'make yarn-install'
                     sh 'make yarn-publish-ci'
                 }
@@ -90,17 +90,13 @@ node('docker') {
 }
 
 void createNpmrcFile(String credentialsId) {
-    withCredentials([usernamePassword(credentialsId: "${credentialsId}", usernameVariable: 'TARGET_USER', passwordVariable: 'TARGET_PSW')]) {
+    withCredentials([string(credentialsId: credentialsId, variable: 'NPM_TOKEN')]) {
         withEnv(["HOME=${env.WORKSPACE}"]) {
-            String NPM_TOKEN = """${sh(
-                    returnStdout: true,
-                    script: 'echo -n "${TARGET_USER}:${TARGET_PSW}" | openssl base64'
-            )}""".trim()
             writeFile encoding: 'UTF-8', file: '.npmrc', text: """
 @cloudogu-npm:registry=https://registry.npmjs.org/
 email=jenkins@cloudogu.com
 always-auth=true
-//registry.npmjs.org/:_auth="${NPM_TOKEN}"
+//registry.npmjs.org/:_authToken="${NPM_TOKEN}"
             """.trim()
         }
     }

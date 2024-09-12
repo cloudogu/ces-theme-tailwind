@@ -20,6 +20,6 @@ In case there occurred errors during the deployment to the npm registry, you hav
 these steps:
 
 1. `git checkout <tag>`
-1. make sure that the `.npmrc` has been generated for the productive registry. If necessary: `make gen-npmrc-release`
+1. make sure that the `.npmrc` has been generated for the productive registry.
 1. release the package: `yarn publish  --non-interactive`
    1. the extra flag `--non-interactive` tells the process to use the version specified in the `package.json`

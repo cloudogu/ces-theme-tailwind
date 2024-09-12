@@ -1,22 +1,19 @@
 {
   "name": "@cloudogu/ces-theme-tailwind",
-  "license": "MIT",
+  "repository": "https://github.com/cloudogu/ces-theme-tailwind",
+  "license": "AGPL-3.0-only",
   "private": false,
-  "version": "0.7.1",
+  "version": "1.0.0",
   "files": [
     "target",
-    "tailwind.presets.cjs",
-    "colormapping.cjs",
-    "colormapping.json",
-    "colorscheme.json",
-    "ces-theme-tailwind-config.css"
+    "config"
   ],
   "main": "target/index.js",
   "module": "target/index.mjs",
   "types": "target/index.d.ts",
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider yarn storybook --ci",
-    "build": "rm -rf target && tsup ./src/index.ts -d target --format esm,cjs --dts --sourcemap",
+    "build": "rm -rf target && yarn tsup ./src/index.ts -d target --format esm,cjs --dts --sourcemap",
     "localbuild": "rm -rf localtarget && mkdir localtarget && yarn build && yarn pack --filename localtarget/archive.tgz && tar -xvzf localtarget/archive.tgz --strip-components 1 --directory localtarget",
     "tw": "npx tailwindcss build -o build/tailwind-generated.css",
     "storybook": "storybook dev -p 6006",
@@ -26,7 +23,6 @@
     "test:watch": "jest -w=20% --watch",
     "prepublishOnly": "./scripts/pre-publish-checks.sh",
     "check": "./pre-publish-checks.sh",
-    "fastPublish": "SKIP_LINT=true SKIP_TESTS=true SKIP_IMPORT_CHECKS=true yarn publish",
     "lint": "yarn eslint \"src/components/**\"",
     "fix": "yarn eslint --fix \"src/components/**\"",
     "circular": "dpdm --no-warning --no-tree --exit-code circular:1 --tsconfig tsconfig.json ./src/index.ts"

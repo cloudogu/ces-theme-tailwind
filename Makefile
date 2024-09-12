@@ -1,5 +1,5 @@
 MAKEFILES_VERSION=9.2.1
-VERSION=0.7.1
+VERSION=1.0.0
 NODE_VERSION=18
 IMAGE_NAME="registry.cloudogu.com/storybook/ces-theme-tailwind"
 
