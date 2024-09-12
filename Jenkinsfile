@@ -70,6 +70,7 @@ node('docker') {
 
         if (gitflow.isReleaseBranch()) {
             String releaseVersion = git.getSimpleBranchName()
+            Changelog changelog = new Changelog(this)
 
             stage('Finish Release') {
                 gitflow.finishRelease(releaseVersion, productionReleaseBranch)
@@ -84,6 +85,10 @@ node('docker') {
                 finally {
                     sh 'rm -f .npmrc'
                 }
+            }
+
+            stage ('Add Github-Release'){
+                github.createReleaseWithChangelog(releaseVersion, changelog)
             }
         }
     }
