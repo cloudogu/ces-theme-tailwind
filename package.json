@@ -3,7 +3,7 @@
   "repository": "https://github.com/cloudogu/ces-theme-tailwind",
   "license": "AGPL-3.0-only",
   "private": false,
-  "version": "0.7.2-alpha.3",
+  "version": "0.7.2-alpha.4",
   "files": [
     "target",
     "config"
