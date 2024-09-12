@@ -13,7 +13,7 @@
   "types": "target/index.d.ts",
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider yarn storybook --ci",
-    "build": "rm -rf target && tsup ./src/index.ts -d target --format esm,cjs --dts --sourcemap",
+    "build": "rm -rf target && yarn tsup ./src/index.ts -d target --format esm,cjs --dts --sourcemap",
     "localbuild": "rm -rf localtarget && mkdir localtarget && yarn build && yarn pack --filename localtarget/archive.tgz && tar -xvzf localtarget/archive.tgz --strip-components 1 --directory localtarget",
     "tw": "npx tailwindcss build -o build/tailwind-generated.css",
     "storybook": "storybook dev -p 6006",
