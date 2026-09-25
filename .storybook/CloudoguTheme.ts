@@ -1,4 +1,4 @@
-import { create } from '@storybook/theming/create';
+import { create } from 'storybook/theming';
 import logoUrl from './public/logo.svg';
 export default create({
     base: 'light',

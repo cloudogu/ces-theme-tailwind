@@ -2,7 +2,7 @@ import '@src/i18n';
 import {act, render} from '@testing-library/react';
 import PaginationRoot from "@components/pagination/PaginationRoot";
 import Pagination from './Pagination';
-import {userEvent} from "@storybook/testing-library";
+import userEvent from "@testing-library/user-event";
 import {createRef} from 'react';
 import usePaginationControl from './hooks/usePaginationControl';
 import {PaginationControlInput} from "@components/pagination/hooks/usePaginationControl.types";

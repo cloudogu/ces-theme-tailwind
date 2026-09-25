@@ -1,24 +1,17 @@
+FROM node:22-alpine AS build
+
+WORKDIR /build/ces-theme-tailwind
+COPY . .
+RUN yarn install --frozen-lockfile \
+ && yarn build-storybook -o /storybook-static
+
 FROM alpine:3.20
 
 LABEL NAME="ecosystem.cloudogu.com/ces-theme-tailwind" \
-      VERSION="0.7.1"
+      VERSION="1.0.0"
 
-# install required packages
-RUN set -x \
-    && apk update \
-    && apk --update add openssl pcre zlib nginx bash yarn
-
-# build
-RUN mkdir -p /build/ces-theme-tailwind
-WORKDIR /build/ces-theme-tailwind
-ADD . .
-RUN  yarn install \
- && mkdir -p /var/www/html/website \
-    # build storybook
- && yarn build-storybook -o /var/www/html/website/public \
-    #cleanup
- && rm -rf /build
-
+RUN apk add --no-cache openssl pcre zlib nginx bash
+COPY --from=build /storybook-static /var/www/html/website/public
 
 # setup nginx
 RUN chown root:root /usr/sbin/nginx \
