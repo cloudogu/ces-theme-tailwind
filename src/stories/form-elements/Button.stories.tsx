@@ -6,6 +6,24 @@ import {TextWithIcon} from "@src/index";
 
 const meta: Meta<ButtonProps> = {
     title: "CES Theme/Form elements/Button",
+    component: Button,
+    parameters: {
+        docs: {
+            source: {
+                transform: (_source: string, {args}: {args: ButtonProps}) => {
+                    const props = ["color", "variant", "size", "disabled"]
+                        .map((key) => {
+                            const value = args[key as keyof ButtonProps];
+                            if (value === undefined) return null;
+                            return `  ${key}={${JSON.stringify(value)}}`;
+                        })
+                        .filter(Boolean)
+                        .join("\n");
+                    return `import { Button } from "@cloudogu/ces-theme-tailwind";\n\n<Button\n${props}\n>\n  Click me!\n</Button>`;
+                },
+            },
+        },
+    },
     argTypes: {
         color: {
             control: "select",

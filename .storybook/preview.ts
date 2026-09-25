@@ -3,6 +3,12 @@ import '../src/index.css';
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      codePanel: true,
+      source: {
+        type: 'dynamic',
+      },
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
